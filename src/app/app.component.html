@@ -2,6 +2,21 @@
 	<h1>Prueba técnica - Estudio Faser</h1>
 	<h2>Listado de tareas</h2>
 	<ol>
-		<li *ngFor="let tarea of tareas">{{tarea.titulo}} ({{tarea.minutos}} minutos)</li>
+		<table>						<!--creando la tabla -->
+			<tr *ngFor="let tarea of tareas" >{{tarea.id}} {{tarea.titulo}} ({{tarea.minutos}} minutos) 				<!-- recorriendo el array-->
+			<button type="submit" (click)="eliminarTarea(tarea.id)">Eliminar</button>									<!-- boton para eliminar un objeto-->
+			<button class="boton" (click)="destacarTarea(tarea.id, tarea.titulo, tarea.minutos)">Destacar</button></tr> <!-- boton para Destacar tarea-->
+		</table>
 	</ol>
+								<!--creando el form-->
+	<form [formGroup]="tareaForm" 				
+	(ngSubmit)="agregarNuevaTarea(tareaForm.value)">
+		<input id="nuevoId" type="number" formControlName="nuevoId" placeholder="numero de tarea"><br><br> 				<!--Text para ingresar el ID-->
+		<input id="nuevaTarea" type="text" formControlName="nuevaTarea" placeholder="nueva tarea"><br><br>				<!--Text para ingresar el titulo-->
+		<input id="duracionTarea" type="number" formControlName="nuevaDuracion" placeholder="duracion en minutos"><br>	<!--Text para ingresar la duracion-->
+	  	<p>presione el boton de abajo para crear una nueva tarea</p>
+		<input type="submit" value="Nueva Tarea">  											<!--enviando datos-->
+	</form>
+<br>
+	<button type="submit" (click)="ordenarTareas(tareas)">Ordenar</button>	<!--Button para ordenar tareas-->
 </div>

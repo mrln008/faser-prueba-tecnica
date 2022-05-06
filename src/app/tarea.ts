@@ -5,3 +5,4 @@ export class Tarea {
         public minutos: number,
     ){}
 }
+
